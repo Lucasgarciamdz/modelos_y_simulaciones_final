@@ -1,0 +1,1 @@
+Fintechs emergentes: Empresas tecnológicas del sector financiero que necesitan desarrollar rápidamente soluciones digitales robustas, seguras y escalables para operar en el mercado. Suelen requerir integraciones con otras plataformas, automatización de procesos, y cumplimiento de normativas locales e internacionales (KYC, AML, etc.).
