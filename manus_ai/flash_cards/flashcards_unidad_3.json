@@ -1,0 +1,23 @@
+[
+  {
+    "question": "¿Por qué es tan difícil analizar los sistemas no lineales?",
+    "answer": "Principalmente porque no existe una teoría matemática unificada para resolver todas las ecuaciones diferenciales no lineales, a diferencia de los sistemas lineales. Esto obliga a usar métodos aproximados o numéricos."
+  },
+  {
+    "question": "¿Qué es un ciclo límite?",
+    "answer": "Es una órbita periódica aislada en el espacio de fase a la que las trayectorias cercanas convergen o divergen. Representa una oscilación sostenida en el sistema."
+  },
+  {
+    "question": "¿Cuál es la ventaja del método del plano de fase?",
+    "answer": "Permite visualizar el comportamiento dinámico de sistemas de bajo orden y entender cualitativamente su estabilidad y las interacciones entre las variables de estado."
+  },
+  {
+    "question": "¿Qué información se obtiene del plano de fase?",
+    "answer": "Permite visualizar la estabilidad de los puntos de equilibrio, la existencia de ciclos límite, y cómo las trayectorias del sistema evolucionan en el tiempo."
+  },
+  {
+    "question": "¿Cuál es la ventaja del método de Lyapunov sobre otros métodos de estabilidad?",
+    "answer": "Permite determinar la estabilidad global o local de un sistema no lineal sin necesidad de linealizarlo o resolver sus ecuaciones, lo que es muy útil para sistemas complejos."
+  }
+]
+

@@ -1,0 +1,23 @@
+[
+  {
+    "question": "¿Cuál es la diferencia entre un modelo y una simulación?",
+    "answer": "Un modelo es la representación abstracta de un sistema, mientras que la simulación es el proceso de ejecutar ese modelo para observar su comportamiento a lo largo del tiempo."
+  },
+  {
+    "question": "¿Por qué es preferible modelar y simular antes de experimentar en la realidad?",
+    "answer": "Permite reducir costos, evitar riesgos de seguridad, probar escenarios extremos y optimizar diseños antes de la implementación física."
+  },
+  {
+    "question": "¿Cuál es la ventaja principal de la representación por variables de estado?",
+    "answer": "Su aplicabilidad universal a diferentes tipos de sistemas (lineales, no lineales, SISO, MIMO) y su facilidad para la implementación computacional y el análisis."
+  },
+  {
+    "question": "¿Qué representa un punto en el espacio de estados?",
+    "answer": "Un punto en el espacio de estados representa el estado completo del sistema en un instante de tiempo específico, es decir, los valores de todas sus variables de estado en ese momento."
+  },
+  {
+    "question": "¿Cómo se determina el orden de un sistema en la representación por variables de estado?",
+    "answer": "El orden del sistema es igual al número de variables de estado independientes necesarias para describir completamente su dinámica, lo que a menudo coincide con el número de elementos almacenadores de energía."
+  }
+]
+

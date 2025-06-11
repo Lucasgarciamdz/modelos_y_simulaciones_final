@@ -1,0 +1,23 @@
+[
+  {
+    "question": "Describe el Modelo Depredador-Presa (Lotka-Volterra).",
+    "answer": "Describe la dinámica de dos especies donde una es la presa (x) y la otra el depredador (y), mostrando un comportamiento cíclico y oscilatorio en sus poblaciones."
+  },
+  {
+    "question": "¿Cuáles son las ecuaciones del Modelo de Lotka-Volterra?",
+    "answer": "`dx/dt = ax - bxy` (presas) y `dy/dt = cxy - ky` (depredadores)."
+  },
+  {
+    "question": "¿Qué representan los puntos críticos en el Modelo de Lotka-Volterra?",
+    "answer": "`(0, 0)` representa la extinción de ambas especies, y `(k/c, a/b)` representa la coexistencia de ambas especies."
+  },
+  {
+    "question": "Describe el Modelo de Especies en Competencia.",
+    "answer": "Describe dos especies que compiten por un recurso limitado, donde la presencia de cada especie afecta negativamente el crecimiento de la otra."
+  },
+  {
+    "question": "¿Qué es el principio de exclusión competitiva en el Modelo de Especies en Competencia?",
+    "answer": "Dependiendo de las condiciones iniciales, una de las especies eventualmente dominará y llevará a la otra a la extinción."
+  }
+]
+

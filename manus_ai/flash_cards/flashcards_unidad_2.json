@@ -1,0 +1,23 @@
+[
+  {
+    "question": "¿Qué es la matriz de transición de estado?",
+    "answer": "Es una matriz que describe cómo el estado de un sistema lineal homogéneo evoluciona en el tiempo. Permite calcular el estado futuro del sistema a partir de su estado inicial sin necesidad de resolver la ecuación diferencial."
+  },
+  {
+    "question": "¿Cuándo se utiliza el método de la transformada de Laplace y cuándo el de la matriz exponencial?",
+    "answer": "La transformada de Laplace es útil para sistemas con entradas complejas o para análisis en el dominio de la frecuencia. La matriz exponencial es más directa para la solución en el dominio del tiempo y para entender la evolución natural del sistema."
+  },
+  {
+    "question": "¿Por qué es importante la interconexión de sistemas?",
+    "answer": "Permite analizar y diseñar sistemas complejos de manera modular, facilitando la comprensión de su comportamiento global y el diseño de controladores."
+  },
+  {
+    "question": "¿Cuándo se necesita un observador de estado?",
+    "answer": "Cuando no todas las variables de estado de un sistema pueden ser medidas directamente debido a limitaciones físicas, costos o inaccesibilidad."
+  },
+  {
+    "question": "¿Qué es el Filtro de Kalman?",
+    "answer": "Es un algoritmo recursivo que estima el estado de un sistema dinámico a partir de una serie de mediciones ruidosas. Es un observador óptimo en el sentido de que minimiza la varianza del error de estimación."
+  }
+]
+
