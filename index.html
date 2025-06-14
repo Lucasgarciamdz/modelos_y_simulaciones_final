@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Modelos y Simulación - Unidad 1: Introducción a los Sistemas, Modelos y Simulación</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.5.0/plugin/highlight/monokai.css">
+    
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/katex@0.16.8/dist/katex.min.css">
+    
+    <style>
+        :root {
+            --background-color: #292D3E;
+            --main-text-color: #A6ACCD;
+            --header-color: #82aaff;
+            --highlight-color: #ffcb6b;
+            --link-color: #89ddff;
+            --control-color: #c792ea;
+            --contrast-bg-color: #202331;
+        }
+
+        .reveal {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 38px;
+            font-weight: normal;
+            color: var(--main-text-color);
+        }
+
+        body {
+            background: var(--background-color);
+            background-color: var(--background-color);
+        }
+
+        .reveal .slides section {
+            text-align: left;
+            background: var(--background-color);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            margin: 0 0 20px 0;
+            color: var(--header-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: normal;
+            text-transform: none;
+            text-shadow: none;
+            word-wrap: break-word;
+            text-align: center;
+        }
+
+        .reveal h1 {
+            font-size: 2.5em;
+        }
+
+        .reveal h2 {
+            font-size: 1.6em;
+        }
+
+        .reveal h3 {
+            font-size: 1.3em;
+        }
+
+        .reveal p {
+            margin: 20px 0;
+            line-height: 1.3;
+        }
+
+        .reveal strong,
+        .reveal b {
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+
+        .reveal em {
+            font-style: italic;
+            color: var(--highlight-color);
+        }
+
+        .reveal a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color .15s ease;
+        }
+
+        .reveal a:hover {
+            color: var(--highlight-color);
+            text-shadow: none;
+            border: none;
+        }
+
+        .reveal .progress {
+            bottom: 1px;
+            color: var(--control-color);
+        }
+
+        .reveal .controls {
+            color: var(--control-color);
+        }
+
+        .reveal .slide-number {
+            color: var(--main-text-color);
+        }
+
+        .reveal blockquote {
+            display: block;
+            position: relative;
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            font-style: italic;
+            background: var(--contrast-bg-color);
+            border-left: 5px solid var(--highlight-color);
+            border-radius: 5px;
+        }
+
+        .reveal blockquote p:first-child,
+        .reveal blockquote p:last-child {
+            display: inline-block;
+        }
+
+        .reveal code {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--highlight-color);
+            background: var(--contrast-bg-color);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .reveal pre {
+            display: block;
+            position: relative;
+            width: 90%;
+            margin: 20px auto;
+            text-align: left;
+            font-size: 0.55em;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.2em;
+            word-wrap: break-word;
+            background: var(--contrast-bg-color);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .reveal pre code {
+            display: block;
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+            background: transparent;
+        }
+
+        .reveal ul, .reveal ol {
+            display: block;
+            margin-left: 1em;
+        }
+
+        .reveal ul li,
+        .reveal ol li {
+            margin-bottom: 10px;
+        }
+
+        .reveal .two-column {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .reveal .two-column .column {
+            flex: 1;
+        }
+
+        .reveal .equation-highlight {
+            background: var(--contrast-bg-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .reveal .diagram-placeholder {
+            background: var(--contrast-bg-color);
+            border: 2px dashed var(--highlight-color);
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+            color: var(--highlight-color);
+        }
+
+        .reveal .key-concept {
+            background: var(--contrast-bg-color);
+            padding: 20px;
+            border-left: 5px solid var(--link-color);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .reveal .question-slide {
+            background: linear-gradient(135deg, var(--contrast-bg-color), var(--background-color));
+            border: 2px solid var(--control-color);
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .reveal .answer-slide {
+            background: linear-gradient(135deg, var(--background-color), var(--contrast-bg-color));
+            border: 2px solid var(--highlight-color);
+            border-radius: 10px;
+            padding: 40px;
+        }
+
+        .reveal .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, var(--background-color), var(--contrast-bg-color));
+        }
+
+        .reveal .title-slide h1 {
+            color: var(--header-color);
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .reveal .title-slide h2 {
+            color: var(--highlight-color);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .reveal .title-slide p {
+            color: var(--main-text-color);
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .reveal .concept-map {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8em;
+            background: var(--contrast-bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: var(--link-color);
+        }
+
+        .highlight-step {
+            background: var(--highlight-color);
+            color: var(--background-color);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Título -->
+            <section class="title-slide" data-transition="zoom">
+                <h1>Modelos y Simulación</h1>
+                <h2>Unidad 1: Introducción a los Sistemas, Modelos y Simulación</h2>
+                <p>Bioingeniería - 4º Año</p>
+                <p>Guía de Estudio Interactiva</p>
+            </section>
+
+            <!-- Slide 2: El Panorama General -->
+            <section>
+                <h2>El Panorama General</h2>
+                <div class="concept-map">
+                    <pre><code>
+    SISTEMA REAL
+         |
+         v
+    ANÁLISIS Y MODELADO
+         |
+         v
+    MODELO MATEMÁTICO
+         |
+         v
+    ECUACIONES DE ESTADO
+         |
+         v
+    IMPLEMENTACIÓN
+         |
+         v
+    SIMULACIÓN COMPUTACIONAL
+         |
+         v
+    ANÁLISIS DE RESULTADOS
+         |
+         v
+    TOMA DE DECISIONES
+                    </code></pre>
+                </div>
+                <p style="text-align: center; color: var(--highlight-color); font-style: italic;">
+                    "De la realidad física a la decisión informada"
+                </p>
+            </section>
+
+            <!-- Slide 3: Sección 1 - Preguntas Clave -->
+            <section>
+                <h2>Conceptos Fundamentales</h2>
+                <h3>¿Qué responderemos en esta sección?</h3>
+                <ul>
+                    <li>¿Qué es un <strong>modelo</strong> y por qué es fundamental en ingeniería?</li>
+                    <li>¿Cuál es la diferencia entre un <strong>modelo</strong> y una <strong>simulación</strong>?</li>
+                    <li>¿Cuáles son las <strong>etapas</strong> de un proceso de simulación completo?</li>
+                </ul>
+                <div class="key-concept">
+                    <p><strong>Objetivo:</strong> Comprender los fundamentos teóricos que sustentan el modelado y la simulación de sistemas.</p>
+                </div>
+            </section>
+
+            <!-- Slide 4: ¿Qué es un Modelo? -->
+            <section>
+                <h2>¿Qué es un Modelo?</h2>
+                <blockquote>
+                    Un <strong>modelo</strong> es una descripción analítica y abstracta de un sistema, proceso o circuito, formulada para estudiar su comportamiento bajo diferentes condiciones de operación.
+                </blockquote>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Concepto Moderno</h3>
+                        <p>También conocido como <strong>gemelo digital</strong> (<em>digital twin</em>)</p>
+                        <ul>
+                            <li>Réplica virtual</li>
+                            <li>Actualización en tiempo real</li>
+                            <li>Predicción de comportamiento</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>¿Por qué Modelar?</h3>
+                        <p>Cuando la experimentación directa es inconveniente por:</p>
+                        <ul>
+                            <li><strong>Seguridad</strong></li>
+                            <li><strong>Costo</strong></li>
+                            <li><strong>Practicidad</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Ejemplos de Aplicación -->
+            <section>
+                <h2>Ejemplos de Aplicación del Modelado</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Ensayos Destructivos</h3>
+                        <p>Punto de ruptura de vigas sin comprometer la estructura real</p>
+                        
+                        <h3>Investigaciones Biológicas</h3>
+                        <p>Respuesta del corazón a temperaturas extremas</p>
+                    </div>
+                    <div class="column">
+                        <h3>Aplicaciones Militares</h3>
+                        <p>Poder destructivo de explosivos sobre estructuras civiles</p>
+                        
+                        <h3>Análisis de Radioactividad</h3>
+                        <p>Efectos de radiación sobre organismos</p>
+                    </div>
+                </div>
+                <div class="key-concept">
+                    <p><strong>Principio Fundamental:</strong> Estudiar el sistema sin comprometerlo</p>
+                </div>
+            </section>
+
+            <!-- Slide 6: ¿Qué es la Simulación? -->
+            <section>
+                <h2>¿Qué es la Simulación?</h2>
+                <blockquote>
+                    La <strong>simulación</strong> es el proceso de diseñar, desarrollar y experimentar con un modelo programable de un sistema para analizar su comportamiento bajo distintas condiciones.
+                </blockquote>
+                
+                <div class="equation-highlight">
+                    <p><strong>Visión Específica:</strong></p>
+                    <p>Técnica numérica que utiliza computadoras para conducir experimentos sobre modelos matemáticos y lógicos que describen un sistema.</p>
+                </div>
+                
+                <p><strong>Ventaja clave:</strong> Permite recrear diferentes entornos y explorar escenarios hipotéticos sin interrumpir las operaciones del mundo real.</p>
+            </section>
+
+            <!-- Slide 7: Evolución del Modelado -->
+            <section>
+                <h2>Evolución del Modelado</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Método Tradicional</h3>
+                        <ul>
+                            <li>Ecuaciones diferenciales de equilibrio</li>
+                            <li>Análisis matemático complejo</li>
+                            <li>Limitado a sistemas lineales</li>
+                            <li>Difícil para sistemas multivariables</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Método Moderno</h3>
+                        <ul>
+                            <li>Computadoras digitales</li>
+                            <li>Modelo algorítmico</li>
+                            <li>Procesamiento a alta velocidad</li>
+                            <li>Mayor exactitud</li>
+                            <li>Diversificación de escenarios</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="key-concept">
+                    <p><strong>Impacto:</strong> Las computadoras han revolucionado la capacidad de simulación y análisis de sistemas complejos.</p>
+                </div>
+            </section>
+
+            <!-- Slide 8: Etapas del Proceso de Simulación -->
+            <section>
+                <h2>Etapas de un Proceso de Simulación</h2>
+                <ol>
+                    <li><strong>Definición del sistema</strong> y formulación del problema</li>
+                    <li><strong>Formulación del modelo</strong> matemático</li>
+                    <li><strong>Recolección de datos</strong> históricos y experimentales</li>
+                    <li><strong>Implementación en software</strong> especializado</li>
+                    <li><strong>Validación</strong> del modelo</li>
+                    <li><strong>Experimentación</strong> con diferentes escenarios</li>
+                    <li><strong>Interpretación</strong> de resultados</li>
+                    <li><strong>Documentación</strong> técnica</li>
+                </ol>
+            </section>
+
+            <!-- Slide 9: Sección 2 - Preguntas Clave -->
+            <section>
+                <h2>Tipos de Modelos Matemáticos</h2>
+                <h3>¿Qué responderemos en esta sección?</h3>
+                <ul>
+                    <li>¿Cuáles son los <strong>tres enfoques</strong> clásicos para modelar sistemas?</li>
+                    <li>¿Por qué el <strong>espacio de estados</strong> es el método preferencial?</li>
+                    <li>¿Qué ventajas ofrece sobre los métodos tradicionales?</li>
+                </ul>
+                <div class="key-concept">
+                    <p><strong>Objetivo:</strong> Comparar los diferentes enfoques de modelado y justificar la elección del método de variables de estado.</p>
+                </div>
+            </section>
+
+            <!-- Slide 10: Tres Enfoques de Modelado -->
+            <section>
+                <h2>Tres Enfoques Clásicos de Modelado</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>1. Ecuaciones Diferenciales</h3>
+                        <ul>
+                            <li>Método tradicional</li>
+                            <li>Complejo para sistemas no lineales</li>
+                            <li>Limitado en multivariables</li>
+                        </ul>
+                        
+                        <h3>2. Función de Transferencia</h3>
+                        <ul>
+                            <li>Información de estabilidad</li>
+                            <li>Comportamiento global</li>
+                            <li>Oculta arquitectura interna</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>3. Variables de Estado</h3>
+                        <ul>
+                            <li><strong>Moderno y versátil</strong></li>
+                            <li>Sistemas lineales y no lineales</li>
+                            <li>SISO y MIMO</li>
+                            <li>Información detallada</li>
+                            <li>Ideal para simulación</li>
+                        </ul>
+                        <div class="highlight-step">
+                            MÉTODO PREFERENCIAL
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 11: Sección 3 - Preguntas Clave -->
+            <section>
+                <h2>Variables de Estado</h2>
+                <h3>¿Qué responderemos en esta sección?</h3>
+                <ul>
+                    <li>¿Qué es el <strong>estado</strong> de un sistema?</li>
+                    <li>¿Cómo se definen las <strong>variables de estado</strong>?</li>
+                    <li>¿Qué información proporciona el <strong>espacio de estados</strong>?</li>
+                </ul>
+                <div class="key-concept">
+                    <p><strong>Objetivo:</strong> Dominar los conceptos fundamentales del análisis por variables de estado.</p>
+                </div>
+            </section>
+
+            <!-- Slide 12: Conceptos Fundamentales -->
+            <section>
+                <h2>Conceptos Fundamentales</h2>
+                <div class="key-concept">
+                    <h3>Estado</h3>
+                    <p>Descripción <strong>completa</strong> de la condición dinámica de un sistema en un instante específico (t₀). Conocer el estado en t₀ y las entradas para t ≥ t₀ es suficiente para determinar el comportamiento futuro.</p>
+                </div>
+                
+                <div class="key-concept">
+                    <h3>Variables de Estado</h3>
+                    <p>Conjunto <strong>mínimo</strong> de variables que definen completamente el estado del sistema. Se asocian a elementos <strong>almacenadores de energía</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Slide 13: Más Conceptos Clave -->
+            <section>
+                <h2>Conceptos Adicionales</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Espacio de Estados</h3>
+                        <p>Espacio n-dimensional donde cada eje corresponde a una variable de estado. Un punto define el estado del sistema.</p>
+                        
+                        <h3>Vector de Estado</h3>
+                        <p>Vector que une el origen con el punto que representa el estado del sistema.</p>
+                    </div>
+                    <div class="column">
+                        <h3>Trayectoria de Estado</h3>
+                        <p>Secuencia de puntos que representa la evolución del sistema a lo largo del tiempo.</p>
+                        
+                        <h3>Orden del Sistema</h3>
+                        <p>Número de elementos almacenadores de energía = número de variables de estado (n).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 14: Elementos Almacenadores de Energía -->
+            <section>
+                <h2>Elementos Almacenadores de Energía</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Sistemas Eléctricos</h3>
+                        <ul>
+                            <li><strong>Inductores (L):</strong> Campo magnético</li>
+                            <li><strong>Capacitores (C):</strong> Carga eléctrica</li>
+                            <li><strong>Variables de estado:</strong></li>
+                            <ul>
+                                <li>Corriente en inductor (i_L)</li>
+                                <li>Voltaje en capacitor (v_C)</li>
+                            </ul>
+                        </ul>
+                        <p><em>Resistencia (R) = elemento disipativo</em></p>
+                    </div>
+                    <div class="column">
+                        <h3>Sistemas Mecánicos</h3>
+                        <ul>
+                            <li><strong>Masa (m):</strong> Energía cinética</li>
+                            <li><strong>Resorte (k):</strong> Energía potencial</li>
+                            <li><strong>Variables de estado:</strong></li>
+                            <ul>
+                                <li>Posición (x)</li>
+                                <li>Velocidad (v)</li>
+                            </ul>
+                        </ul>
+                        <p><em>Amortiguador (B) = elemento disipativo</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 15: Ecuaciones de Estado - Forma General -->
+            <section>
+                <h2>Ecuaciones de Estado - Forma General</h2>
+                <div class="equation-highlight">
+                    <h3>Ecuación de Estado</h3>
+                    <p>$$\dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t)$$</p>
+                    
+                    <h3>Ecuación de Salida</h3>
+                    <p>$$\mathbf{y}(t) = \mathbf{C} \mathbf{x}(t) + \mathbf{D} \mathbf{u}(t)$$</p>
+                </div>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <ul>
+                            <li><strong>x(t):</strong> vector de estado</li>
+                            <li><strong>ẋ(t):</strong> derivadas de variables de estado</li>
+                            <li><strong>u(t):</strong> vector de entrada</li>
+                            <li><strong>y(t):</strong> vector de salida</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <ul>
+                            <li><strong>A:</strong> matriz de estado</li>
+                            <li><strong>B:</strong> matriz de entrada</li>
+                            <li><strong>C:</strong> matriz de salida</li>
+                            <li><strong>D:</strong> matriz de transmisión directa</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 16: Ventajas de la Representación -->
+            <section>
+                <h2>Ventajas de la Representación por Variables de Estado</h2>
+                <div class="key-concept">
+                    <h3>1. Análisis Simplificado</h3>
+                    <p>Se pueden extraer conclusiones examinando las propiedades de las matrices.</p>
+                </div>
+                
+                <div class="key-concept">
+                    <h3>2. Aplicabilidad Universal</h3>
+                    <p>Válido para sistemas de orden superior, no lineales y MIMO.</p>
+                </div>
+                
+                <div class="key-concept">
+                    <h3>3. Implementación Computacional</h3>
+                    <p>Facilita el desarrollo de algoritmos para resolución numérica y simulación.</p>
+                </div>
+            </section>
+
+            <!-- Slide 17: Ejemplo Animado - Circuito RLC (Paso 1) -->
+            <section data-auto-animate>
+                <h2>Ejemplo: Circuito RLC en Serie</h2>
+                <div class="diagram-placeholder">
+                    <pre><code>
+    Vi(t) ----[R]----[L]----[C]---- Ground
+              |              |
+              |              |
+              +---- Vo(t) ---+
+                    </code></pre>
+                    <p>Circuito RLC en serie - Sistema de 2º orden</p>
+                </div>
+                <p><strong>Elementos almacenadores:</strong> Inductor (L) y Capacitor (C)</p>
+                <p><strong>Orden del sistema:</strong> 2</p>
+            </section>
+
+            <!-- Slide 18: Ejemplo Animado - Circuito RLC (Paso 2) -->
+            <section data-auto-animate>
+                <h2>Ejemplo: Circuito RLC en Serie</h2>
+                <div class="diagram-placeholder">
+                    <pre><code>
+    Vi(t) ----[R]----[L]----[C]---- Ground
+              |              |
+              |              |
+              +---- Vo(t) ---+
+                    </code></pre>
+                </div>
+                <div class="highlight-step">PASO 1: Definir Variables de Estado</div>
+                <div class="equation-highlight">
+                    <p><strong>x₁(t) = i(t)</strong> → Corriente en el inductor</p>
+                    <p><strong>x₂(t) = v₀(t)</strong> → Voltaje en el capacitor</p>
+                </div>
+            </section>
+
+            <!-- Slide 19: Ejemplo Animado - Circuito RLC (Paso 3) -->
+            <section data-auto-animate>
+                <h2>Ejemplo: Circuito RLC en Serie</h2>
+                <div class="highlight-step">PASO 2: Aplicar Leyes de Kirchhoff</div>
+                <div class="equation-highlight">
+                    <p><strong>Ley de Voltajes (LVK):</strong></p>
+                    <p>$$v_i(t) = L \frac{di(t)}{dt} + R i(t) + v_o(t)$$</p>
+                    
+                    <p><strong>Corriente en el capacitor:</strong></p>
+                    <p>$$i(t) = C \frac{dv_o(t)}{dt}$$</p>
+                </div>
+                <p>Aplicamos las leyes fundamentales de circuitos...</p>
+            </section>
+
+            <!-- Slide 20: Ejemplo Animado - Circuito RLC (Paso 4) -->
+            <section data-auto-animate>
+                <h2>Ejemplo: Circuito RLC en Serie</h2>
+                <div class="highlight-step">PASO 3: Reordenar las Ecuaciones</div>
+                <div class="equation-highlight">
+                    <p>$$\frac{dx_1}{dt} = \dot{x}_1 = -\frac{R}{L}x_1 - \frac{1}{L}x_2 + \frac{1}{L}v_i$$</p>
+                    
+                    <p>$$\frac{dx_2}{dt} = \dot{x}_2 = \frac{1}{C}x_1$$</p>
+                </div>
+                <p>Aislamos las derivadas de las variables de estado...</p>
+            </section>
+
+            <!-- Slide 21: Ejemplo Animado - Circuito RLC (Paso 5) -->
+            <section data-auto-animate>
+                <h2>Ejemplo: Circuito RLC en Serie</h2>
+                <div class="highlight-step">PASO 4: Representación Matricial</div>
+                <div class="equation-highlight">
+                    <p>$$\begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix} = 
+                    \begin{bmatrix} -\frac{R}{L} & -\frac{1}{L} \\ \frac{1}{C} & 0 \end{bmatrix}
+                    \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} +
+                    \begin{bmatrix} \frac{1}{L} \\ 0 \end{bmatrix} v_i(t)$$</p>
+                    
+                    <p>$$y(t) = \begin{bmatrix} 0 & 1 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$$</p>
+                </div>
+                <p>¡Ecuaciones de estado completas!</p>
+            </section>
+
+            <!-- Slide 22: Ejemplo 2 - Sistema Mecánico -->
+            <section>
+                <h2>Ejemplo: Sistema Masa-Resorte-Amortiguador</h2>
+                <div class="diagram-placeholder">
+                    <pre><code>
+        u(t) ↓
+           ┌─────┐
+           │  m  │ ← Masa
+           └─────┘
+              │
+           ┌──┴──┐
+           │ k B │ ← Resorte y Amortiguador
+           └─────┘
+              │
+           ═══════ ← Tierra
+                    </code></pre>
+                    <p>Sistema mecánico de 2º orden</p>
+                </div>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Variables de Estado</h3>
+                        <p><strong>x₁(t) = y(t)</strong> → Posición</p>
+                        <p><strong>x₂(t) = ẏ(t)</strong> → Velocidad</p>
+                    </div>
+                    <div class="column">
+                        <h3>Ecuación de Equilibrio</h3>
+                        <p>$$u(t) - ky(t) - B\frac{dy}{dt} = m\frac{d^2y}{dt^2}$$</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 23: Sistema Mecánico - Ecuaciones de Estado -->
+            <section>
+                <h2>Sistema Mecánico - Ecuaciones de Estado</h2>
+                <div class="equation-highlight">
+                    <p>$$\begin{bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{bmatrix} =
+                    \begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{B}{m} \end{bmatrix}
+                    \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} +
+                    \begin{bmatrix} 0 \\ \frac{1}{m} \end{bmatrix} u(t)$$</p>
+                    
+                    <p>$$y(t) = \begin{bmatrix} 1 & 0 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$$</p>
+                </div>
+                
+                <div class="key-concept">
+                    <p><strong>Observación:</strong> La estructura de las matrices refleja directamente la física del sistema. La matriz A contiene la dinámica interna, B la influencia de las entradas, y C define qué medimos como salida.</p>
+                </div>
+            </section>
+
+            <!-- Slide 24: Puntos de Equilibrio -->
+            <section>
+                <h2>Puntos de Equilibrio</h2>
+                <div class="key-concept">
+                    <h3>Definición</h3>
+                    <p>Un <strong>punto de equilibrio</strong> es un estado donde las derivadas de todas las variables de estado son cero:</p>
+                    <p>$$\dot{\mathbf{x}} = \mathbf{0}$$</p>
+                </div>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Características</h3>
+                        <ul>
+                            <li>Condición estacionaria</li>
+                            <li>Sin cambios en el tiempo</li>
+                            <li>Pueden ser estables o inestables</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Importancia</h3>
+                        <ul>
+                            <li>Puntos de operación</li>
+                            <li>Análisis de estabilidad</li>
+                            <li>Diseño de controladores</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 25: Sección de Autoevaluación -->
+            <section>
+                <h2>Pon a Prueba tu Comprensión</h2>
+                <div class="key-concept">
+                    <p><strong>Active Recall:</strong> Ahora vamos a verificar tu comprensión de los conceptos clave mediante preguntas específicas.</p>
+                </div>
+                <p>Las siguientes diapositivas contienen preguntas que debes responder antes de ver la respuesta. Tómate tu tiempo para reflexionar.</p>
+            </section>
+
+            <!-- Slide 26: Pregunta 1 -->
+            <section class="question-slide">
+                <h2>Pregunta 1</h2>
+                <div class="key-concept">
+                    <p><strong>¿Cuál es la diferencia fundamental entre un modelo y una simulación?</strong></p>
+                    <p>Explica con tus propias palabras y proporciona un ejemplo concreto.</p>
+                </div>
+                <p style="text-align: center; font-style: italic;">Piensa tu respuesta antes de continuar...</p>
+            </section>
+
+            <!-- Slide 27: Respuesta 1 -->
+            <section class="answer-slide">
+                <h2>Respuesta 1</h2>
+                <div class="key-concept">
+                    <h3>Diferencia Fundamental</h3>
+                    <p><strong>Modelo:</strong> Es la representación abstracta y matemática de un sistema. Es estático, como un "plano" o "esquema" del sistema.</p>
+                    <p><strong>Simulación:</strong> Es el proceso dinámico de ejecutar el modelo para observar su comportamiento a lo largo del tiempo.</p>
+                </div>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Ejemplo</h3>
+                        <p><strong>Modelo:</strong> Ecuaciones de estado de un circuito RLC</p>
+                    </div>
+                    <div class="column">
+                        <p><strong>Simulación:</strong> Ejecutar esas ecuaciones con valores específicos para ver cómo evoluciona la corriente y voltaje</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 28: Pregunta 2 -->
+            <section class="question-slide">
+                <h2>Pregunta 2</h2>
+                <div class="key-concept">
+                    <p><strong>¿Por qué la representación por variables de estado es preferible a las ecuaciones diferenciales tradicionales?</strong></p>
+                    <p>Menciona al menos tres ventajas específicas.</p>
+                </div>
+                <p style="text-align: center; font-style: italic;">Considera sistemas complejos y la implementación computacional...</p>
+            </section>
+
+            <!-- Slide 29: Respuesta 2 -->
+            <section class="answer-slide">
+                <h2>Respuesta 2</h2>
+                <div class="key-concept">
+                    <h3>Ventajas de Variables de Estado</h3>
+                </div>
+                
+                <ol>
+                    <li><strong>Aplicabilidad Universal:</strong> Funciona para sistemas lineales y no lineales, SISO y MIMO, variantes e invariantes en el tiempo.</li>
+                    <li><strong>Implementación Computacional:</strong> Las ecuaciones matriciales son ideales para procesamiento digital y algoritmos numéricos.</li>
+                    <li><strong>Información Detallada:</strong> Proporciona conocimiento completo del estado interno del sistema, no solo la relación entrada-salida.</li>
+                    <li><strong>Análisis Simplificado:</strong> Las propiedades del sistema se pueden estudiar analizando las matrices A, B, C, D.</li>
+                </ol>
+            </section>
+
+            <!-- Slide 30: Pregunta 3 -->
+            <section class="question-slide">
+                <h2>Pregunta 3</h2>
+                <div class="key-concept">
+                    <p><strong>Para un motor DC con carga mecánica, ¿cuáles serían las variables de estado apropiadas y por qué?</strong></p>
+                    <p>Considera que el motor tiene inercia rotacional J, fricción viscosa B, y está conectado a una fuente de voltaje.</p>
+                </div>
+                <p style="text-align: center; font-style: italic;">Piensa en los elementos que almacenan energía...</p>
+            </section>
+
+            <!-- Slide 31: Respuesta 3 -->
+            <section class="answer-slide">
+                <h2>Respuesta 3</h2>
+                <div class="key-concept">
+                    <h3>Variables de Estado para Motor DC</h3>
+                </div>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Variables Propuestas</h3>
+                        <p><strong>x₁(t) = i(t)</strong> → Corriente en la armadura</p>
+                        <p><strong>x₂(t) = ω(t)</strong> → Velocidad angular</p>
+                    </div>
+                    <div class="column">
+                        <h3>Justificación</h3>
+                        <p><strong>Corriente:</strong> Representa la energía almacenada en la inductancia de la armadura</p>
+                        <p><strong>Velocidad angular:</strong> Representa la energía cinética rotacional almacenada en la inercia J</p>
+                    </div>
+                </div>
+                
+                <div class="equation-highlight">
+                    <p><strong>Principio:</strong> Las variables de estado se asocian con elementos almacenadores de energía: inductancia eléctrica (L) e inercia mecánica (J).</p>
+                </div>
+            </section>
+
+            <!-- Slide 32: Resumen Final -->
+            <section>
+                <h2>Resumen de la Unidad 1</h2>
+                <div class="key-concept">
+                    <h3>Puntos Clave Fundamentales</h3>
+                </div>
+                
+                <ol>
+                    <li><strong>Modelado es Esencial:</strong> Permite estudiar sistemas sin riesgos, costos o limitaciones prácticas. El concepto de "gemelo digital" es la evolución moderna.</li>
+                    
+                    <li><strong>Simulación vs Modelo:</strong> El modelo es la representación estática; la simulación es su ejecución dinámica para analizar comportamiento temporal.</li>
+                    
+                    <li><strong>Variables de Estado:</strong> Método preferencial por su versatilidad, detalle informativo y compatibilidad computacional. Se basa en elementos almacenadores de energía.</li>
+                    
+                    <li><strong>Aplicación Práctica:</strong> Las ecuaciones de estado proporcionan un framework sistemático para analizar cualquier sistema dinámico, desde circuitos eléctricos hasta sistemas mecánicos complejos.</li>
+                </ol>
+                
+                <div class="equation-highlight">
+                    <p><strong>Ecuación Fundamental:</strong> $$\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u}$$</p>
+                </div>
+            </section>
+
+            <!-- Slide 33: Conexión con las Siguientes Unidades -->
+            <section>
+                <h2>Mirando Hacia Adelante</h2>
+                <div class="concept-map">
+                    <pre><code>
+UNIDAD 1: Fundamentos
+         ↓
+UNIDAD 2: Resolución y Reconstrucción
+         ↓  
+UNIDAD 3: Sistemas No Lineales
+         ↓
+UNIDAD 4: Modelos Poblacionales
+         ↓
+UNIDADES 5-7: Aplicaciones Avanzadas
+                    </code></pre>
+                </div>
+                
+                <div class="key-concept">
+                    <p><strong>Próximos Pasos:</strong> Ahora que comprendes los fundamentos del modelado por variables de estado, estás preparado para abordar la resolución de sistemas de ecuaciones de estado y técnicas de observación de sistemas.</p>
+                </div>
+                
+                <p style="text-align: center; color: var(--highlight-color); font-size: 1.2em;">
+                    <strong>¡Excelente trabajo completando la Unidad 1!</strong>
+                </p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://unpkg.com/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script src="https://unpkg.com/reveal.js@4.5.0/plugin/notes/notes.js"></script>
+    <script src="https://unpkg.com/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
+    <script src="https://unpkg.com/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+    <script src="https://unpkg.com/reveal.js@4.5.0/plugin/math/math.js"></script>
+    
+    <script>
+        Reveal.initialize({
+            width: 1024,
+            height: 768,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            slideNumber: 'c/t',
+            progress: true,
+            history: true,
+            center: true,
+            transition: 'convex',
+            backgroundTransition: 'fade',
+            
+            plugins: [ 
+                RevealMarkdown, 
+                RevealHighlight, 
+                RevealNotes,
+                RevealMath.KaTeX
+            ],
+            
+            math: {
+                mathjax: 'https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js',
+                config: 'TeX-AMS_HTML-full',
+                TeX: {
+                    Macros: {
+                        RR: "{\\bf R}",
+                        bold: ["{\\bf #1}", 1]
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

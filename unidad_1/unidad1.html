@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=0.2, maximum-scale=3.0, user-scalable=yes">
+
+		<title>Modelos y Simulación - Unidad 1</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/monokai.min.css">
+
+		<style>
+			:root {
+				--palenight-bg: #292D3E;
+				--palenight-fg: #A6ACCD;
+				--palenight-text: #676E95;
+				--palenight-purple: #c792ea;
+				--palenight-blue: #82aaff;
+				--palenight-yellow: #ffcb6b;
+				--palenight-green: #c3e88d;
+				--palenight-red: #f07178;
+				--palenight-cyan: #89ddff;
+				--palenight-contrast: #202331;
+				--palenight-selection: #717CB470;
+			}
+
+			.reveal {
+				font-size: 32px;
+			}
+
+			body {
+				background-color: var(--palenight-bg);
+			}
+
+			.reveal {
+				color: var(--palenight-fg);
+			}
+
+			.reveal h1,
+			.reveal h2,
+			.reveal h3,
+			.reveal h4,
+			.reveal h5,
+			.reveal h6 {
+				color: var(--palenight-blue);
+				text-transform: none;
+			}
+
+			.reveal strong {
+				color: var(--palenight-yellow);
+			}
+
+			.reveal a {
+				color: var(--palenight-cyan);
+			}
+
+			.reveal .controls-arrow {
+				color: var(--palenight-purple);
+			}
+
+			.reveal .progress span {
+				background: var(--palenight-purple);
+			}
+
+			.reveal section .fragment.visible {
+				opacity: 1;
+				visibility: inherit;
+			}
+			
+			::selection {
+				background: var(--palenight-selection);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-transition="zoom">
+					<h2>Modelos y Simulación</h2>
+					<h3>Unidad 1: Introducción al Espacio de Estados</h3>
+					<p>Una guía de estudio para el alumno</p>
+				</section>
+
+				<section data-background-color="var(--palenight-contrast)">
+					<section>
+						<h3>Conceptos Fundamentales</h3>
+						<div style="text-align: left; margin-top: 40px;">
+							<h4>Preguntas Clave de esta Sección:</h4>
+							<ul style="font-size: 0.8em;">
+								<li>¿Cuál es la diferencia entre un modelo y una simulación?</li>
+								<li>¿Por qué es preferible modelar antes de experimentar en la realidad?</li>
+								<li>¿Cuáles son las etapas de un proyecto de simulación?</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h3>¿Qué es un Modelo?</h3>
+						<p class="fragment grow">Es una descripción analítica y abstracta de un sistema o proceso, formulada para estudiar su comportamiento.</p>
+						<p class="fragment grow">Permite cuantificar las variaciones de sus parámetros y entender sus interrelaciones.</p>
+						<p class="fragment highlight-blue">Hoy en día, se le conoce como <strong>Gemelo Digital (Digital Twin)</strong>.</p>
+					</section>
+					<section>
+						<h3>¿Por qué Modelar?</h3>
+						<p>La experimentación directa sobre un sistema real puede ser inconveniente por razones de:</p>
+						<ul>
+							<li class="fragment"><strong>Seguridad:</strong> Ensayos destructivos, análisis de explosivos, etc.</li>
+							<li class="fragment"><strong>Costo:</strong> Probar prototipos físicos es caro.</li>
+							<li class="fragment"><strong>Practicidad:</strong> Estudiar sistemas en condiciones extremas (ej. temperatura en el corazón humano).</li>
+						</ul>
+					</section>
+					<section>
+						<h3>¿Qué es la Simulación?</h3>
+						<p>Es el proceso de diseñar, desarrollar y experimentar con un modelo programable para analizar su comportamiento.</p>
+						<p class="fragment">Es una <strong>técnica numérica computarizada</strong> que nos permite "jugar" con el modelo en diferentes escenarios.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Etapas de un Proceso de Simulación</h3>
+						<ol>
+							<li><strong>Definición del sistema y formulación del problema:</strong> ¿Qué queremos estudiar?</li>
+							<li><strong>Formulación del modelo:</strong> Construcción conceptual y matemática.</li>
+							<li><strong>Recolección de datos:</strong> Alimentar el modelo con información real.</li>
+							<li><strong>Implementación en software:</strong> Programar el modelo.</li>
+						</ol>
+					</section>
+					<section>
+						<h3>Etapas de un Proceso de Simulación (Cont.)</h3>
+						<ol start="5">
+							<li><strong>Validación:</strong> ¿El modelo se comporta como el sistema real?</li>
+							<li><strong>Experimentación:</strong> Ejecutar la simulación con diferentes escenarios.</li>
+							<li><strong>Interpretación:</strong> Analizar los resultados y sacar conclusiones.</li>
+							<li><strong>Documentación:</strong> Crear informes y manuales.</li>
+						</ol>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Tipos de Modelos Matemáticos</h3>
+						<ul>
+							<li class="fragment"><strong>Ecuaciones Diferenciales:</strong> El método clásico. Complejo para sistemas no lineales o multivariables.</li>
+							<li class="fragment"><strong>Función de Transferencia:</strong> Informa sobre la estabilidad, pero oculta la arquitectura interna.</li>
+							<li class="fragment"><strong>Variables de Estado (Espacio de Estados):</strong> El enfoque moderno. Versátil, detallado y perfecto para la simulación computacional.</li>
+						</ul>
+					</section>
+					<section>
+						<h3>El Panorama General de la Unidad 1</h3>
+						<p>Así es como se conectan los conceptos que veremos:</p>
+						<div style="font-family: monospace; font-size: 0.9em; text-align: center; margin-top: 30px;">
+							<p class="fragment">[Sistema Físico]</p>
+							<p class="fragment">&darr;</p>
+							<p class="fragment">[<strong>Modelo Matemático</strong>]</p>
+							<p class="fragment">(Leyes de Kirchhoff/Newton)</p>
+							<p class="fragment">&darr;</p>
+							<p class="fragment">[Elección de <strong>Variables de Estado</strong>]</p>
+							<p class="fragment">(Asociadas a energía: $i_L, v_C, x, v$)</p>
+							<p class="fragment">&darr;</p>
+							<p class="fragment">[Formulación de <strong>Ecuaciones de Estado</strong>]</p>
+							<p class="fragment">($\dot{x}=Ax+Bu, y=Cx+Du$)</p>
+							<p class="fragment">&darr;</p>
+							<p class="fragment">[<strong>Solución y Análisis</strong>]</p>
+							<p class="fragment">(Laplace, $\Phi(t)$, Estabilidad)</p>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Análisis por Variables de Estado</h3>
+						<div style="text-align: left; margin-top: 40px;">
+							<h4>Preguntas Clave de esta Sección:</h4>
+							<ul style="font-size: 0.8em;">
+								<li>¿Qué representa un punto en el "espacio de estados"?</li>
+								<li>¿Cómo se determina el orden de un sistema?</li>
+								<li>¿Qué son las ecuaciones de estado y qué representa cada matriz?</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h3>Conceptos Fundamentales</h3>
+						<ul>
+							<li><strong>Estado:</strong> Descripción completa de la condición dinámica de un sistema en un instante. Es la "foto" del sistema.</li>
+							<li><strong>Variables de Estado:</strong> El conjunto mínimo de parámetros que definen el estado. Se asocian a elementos que <strong>almacenan energía</strong>.</li>
+							<li><strong>Orden del Sistema (n):</strong> Número de variables de estado.</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Elementos Almacenadores de Energía</h3>
+						<div style="display: flex; justify-content: space-around; align-items: flex-start;">
+							<div class="fragment" style="flex: 1; margin-right: 20px;">
+								<h4>Sistemas Eléctricos</h4>
+								<p>La energía se almacena en campos magnéticos y eléctricos.</p>
+								<ul>
+									<li><strong>Inductores (L)</strong> &rarr; Variable: Corriente ($i_L$)</li>
+									<li><strong>Capacitores (C)</strong> &rarr; Variable: Tensión ($v_C$)</li>
+								</ul>
+							</div>
+							<div class="fragment" style="flex: 1; border-left: 2px solid var(--palenight-blue); padding-left: 20px;">
+								<h4>Sistemas Mecánicos</h4>
+								<p>La energía se almacena como energía cinética y potencial.</p>
+								<ul>
+									<li><strong>Masas (m)</strong> &rarr; Variable: Velocidad ($v$)</li>
+									<li><strong>Resortes (k)</strong> &rarr; Variable: Posición ($x$)</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Espacio de Estados</h3>
+						<ul>
+							<li><strong>Espacio de Estados:</strong> Un espacio n-dimensional donde cada eje es una variable de estado.</li>
+							<li><strong>Vector de Estado (x):</strong> Un vector que une el origen con el punto que representa el estado actual del sistema.</li>
+							<li><strong>Trayectoria de Estado:</strong> La curva que dibuja el vector de estado a lo largo del tiempo.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Las Ecuaciones de Estado</h3>
+						<p>Estas dos ecuaciones son el corazón del modelo de estado. Definen toda la dinámica del sistema.</p>
+						<blockquote style="background-color: var(--palenight-contrast); border-color: var(--palenight-purple); padding: 20px; border-radius: 10px;">
+							<h4 style="color: var(--palenight-blue);">Ecuación de Estado: $\dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t)$</h4>
+							<p style="font-size: 0.8em;">Describe cómo evoluciona el estado del sistema en el tiempo.</p>
+						</blockquote>
+						<blockquote class="fragment" style="background-color: var(--palenight-contrast); border-color: var(--palenight-purple); padding: 20px; border-radius: 10px;">
+							<h4 style="color: var(--palenight-blue);">Ecuación de Salida: $\mathbf{y}(t) = \mathbf{C} \mathbf{x}(t) + \mathbf{D} \mathbf{u}(t)$</h4>
+							<p style="font-size: 0.8em;">Describe cómo se calcula la salida que observamos.</p>
+						</blockquote>
+					</section>
+					<section>
+						<h3>Las Matrices del Sistema</h3>
+						<ul>
+							<li>$\mathbf{x}(t)$: Vector de estado (n x 1)</li>
+							<li>$\mathbf{u}(t)$: Vector de entrada (m x 1)</li>
+							<li>$\mathbf{y}(t)$: Vector de salida (p x 1)</li>
+							<li class="fragment">$\mathbf{A}$: Matriz de estado (n x n) - La dinámica interna.</li>
+							<li class="fragment">$\mathbf{B}$: Matriz de entrada (n x m) - Cómo afecta la entrada al estado.</li>
+							<li class="fragment">$\mathbf{C}$: Matriz de salida (p x n) - Cómo se mide la salida desde el estado.</li>
+							<li class="fragment">$\mathbf{D}$: Matriz de transmisión directa (p x m) - Conexión directa entrada-salida (a menudo es cero).</li>
+						</ul>
+					</section>
+				</section>
+
+				<section data-transition="slide-in fade-out">
+					<section data-auto-animate>
+						<h3 data-id="ex1-title">Ejemplo 1: Circuito RLC en Serie</h3>
+						<p>Vamos a obtener el modelo de estado paso a paso.</p>
+						<!-- Imagen faltante: Diagrama de un circuito RLC en serie con una fuente de voltaje Vi, una resistencia R, un inductor L y un capacitor C. La corriente i(t) fluye a través de ellos. -->
+						<div style="border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 20px auto; width: 80%;">
+							<p><strong>Diagrama: Circuito RLC en Serie</strong></p>
+							<p style="font-size: 0.8em;">(El alumno puede buscar una imagen de referencia para un circuito RLC en serie)</p>
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex1-title">Ejemplo 1: Circuito RLC en Serie</h3>
+						<h4>Paso 1: Identificar Variables de Estado</h4>
+						<p>Los elementos que almacenan energía son L y C.</p>
+						<ul>
+							<li>$x_1(t) = i_L(t)$ (Corriente en el inductor)</li>
+							<li>$x_2(t) = v_C(t)$ (Tensión en el capacitor)</li>
+						</ul>
+						<p>El orden del sistema es 2.</p>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex1-title">Ejemplo 1: Circuito RLC en Serie</h3>
+						<h4>Paso 2: Ecuaciones del Sistema (Leyes de Kirchhoff)</h4>
+						<p>Ley de Voltajes (malla):</p>
+						<p>$v_i(t) = R i(t) + L \frac{di(t)}{dt} + v_C(t)$</p>
+						<p>Corriente en el capacitor:</p>
+						<p>$i(t) = C \frac{dv_C(t)}{dt}$</p>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex1-title">Ejemplo 1: Circuito RLC en Serie</h3>
+						<h4>Paso 3: Formular Ecuaciones de Estado</h4>
+						<p>Despejamos las derivadas de las variables de estado:</p>
+						<p>$\dot{x}_1 = \frac{di}{dt} = -\frac{R}{L}x_1 - \frac{1}{L}x_2 + \frac{1}{L}v_i(t)$</p>
+						<p>$\dot{x}_2 = \frac{dv_C}{dt} = \frac{1}{C}x_1$</p>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex1-title">Ejemplo 1: Circuito RLC en Serie</h3>
+						<h4>Paso 4: Representación Matricial</h4>
+						<p data-id="eq-state-title">Ecuación de Estado:</p>
+						<div data-id="eq-state-matrix">
+						<p>
+						$\begin{Bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{Bmatrix} = 
+						\begin{bmatrix} -\frac{R}{L} & -\frac{1}{L} \\ \frac{1}{C} & 0 \end{bmatrix}
+						\begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix} +
+						\begin{Bmatrix} \frac{1}{L} \\ 0 \end{Bmatrix} v_i(t)$
+						</p>
+						</div>
+						<p data-id="eq-output-title" class="fragment">Ecuación de Salida (si $y = v_C$):</p>
+						<div data-id="eq-output-matrix" class="fragment">
+						<p>
+						$y(t) = \begin{bmatrix} 0 & 1 \end{bmatrix} \begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix}$
+						</p>
+						</div>
+						<p class="fragment" style="font-size: 0.7em; margin-top: 30px;">Con este modelo, podemos simular el comportamiento del circuito para cualquier entrada $v_i(t)$ y condiciones iniciales.</p>
+					</section>
+				</section>
+
+				<section data-transition="slide-in fade-out">
+					<section data-auto-animate>
+						<h3 data-id="ex2-title">Ejemplo 2: Sistema Masa-Resorte-Amortiguador</h3>
+						<!-- Imagen faltante: Diagrama de un sistema masa-resorte-amortiguador. Una masa (m) está conectada a una pared por un resorte (k) y un amortiguador (B). Se le aplica una fuerza u(t) y su desplazamiento es y(t). -->
+						<div style="border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 20px auto; width: 80%;">
+							<p><strong>Diagrama: Sistema Masa-Resorte-Amortiguador</strong></p>
+							<p style="font-size: 0.8em;">(El alumno puede buscar una imagen de referencia)</p>
+						</div>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex2-title">Ejemplo 2: Sistema Masa-Resorte-Amortiguador</h3>
+						<h4>Paso 1: Identificar Variables de Estado</h4>
+						<p>Los elementos que almacenan energía son la masa (energía cinética) y el resorte (energía potencial).</p>
+						<ul>
+							<li>$x_1(t) = y(t)$ (Posición de la masa)</li>
+							<li>$x_2(t) = \dot{y}(t)$ (Velocidad de la masa)</li>
+						</ul>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex2-title">Ejemplo 2: Sistema Masa-Resorte-Amortiguador</h3>
+						<h4>Paso 2: Ecuación del Sistema (2da Ley de Newton)</h4>
+						<p>$\sum F = ma \implies u(t) - k y(t) - B \dot{y}(t) = m \ddot{y}(t)$</p>
+						<p>Despejando la aceleración:</p>
+						<p>$\ddot{y}(t) = -\frac{k}{m} y(t) - \frac{B}{m} \dot{y}(t) + \frac{1}{m} u(t)$</p>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex2-title">Ejemplo 2: Sistema Masa-Resorte-Amortiguador</h3>
+						<h4>Paso 3: Formular Ecuaciones de Estado</h4>
+						<p>A partir de la definición de las variables:</p>
+						<p>$\dot{x}_1 = \dot{y} = x_2$</p>
+						<p>$\dot{x}_2 = \ddot{y} = -\frac{k}{m} x_1 - \frac{B}{m} x_2 + \frac{1}{m} u(t)$</p>
+					</section>
+					<section data-auto-animate>
+						<h3 data-id="ex2-title">Ejemplo 2: Sistema Masa-Resorte-Amortiguador</h3>
+						<h4>Paso 4: Representación Matricial</h4>
+						<p>Ecuación de Estado:</p>
+						<p>
+						$\begin{Bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{Bmatrix} =
+						\begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{B}{m} \end{bmatrix}
+						\begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix} +
+						\begin{Bmatrix} 0 \\ \frac{1}{m} \end{Bmatrix} u(t)$
+						</p>
+						<p>Ecuación de Salida (si $y$ es la posición):</p>
+						<p>
+						$y(t) = \begin{bmatrix} 1 & 0 \end{bmatrix} \begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix}$
+						</p>
+						<p class="fragment" style="font-size: 0.7em; margin-top: 30px;">Este modelo nos permite predecir la posición y velocidad de la masa ante cualquier fuerza $u(t)$.</p>
+					</section>
+				</section>
+
+				<section data-background-color="var(--palenight-contrast)">
+					<section>
+						<h3>Resolución del Modelo de Estado</h3>
+						<p>Resolver la ecuación de estado significa encontrar el vector $\mathbf{x}(t)$. Usaremos la <strong>Transformada de Laplace</strong>.</p>
+						<p>$\dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t)$</p>
+						<p class="fragment fade-in-then-semi-out">Aplicando Laplace:</p>
+						<p class="fragment">$s\mathbf{X}(s) - \mathbf{x}(0) = \mathbf{A}\mathbf{X}(s) + \mathbf{B}\mathbf{U}(s)$</p>
+					</section>
+					<section>
+						<h4>Despejando X(s)</h4>
+						<p>$s\mathbf{X}(s) - \mathbf{A}\mathbf{X}(s) = \mathbf{x}(0) + \mathbf{B}\mathbf{U}(s)$</p>
+						<p>$(s\mathbf{I} - \mathbf{A})\mathbf{X}(s) = \mathbf{x}(0) + \mathbf{B}\mathbf{U}(s)$</p>
+						<p class="fragment">La solución en el dominio de Laplace es:</p>
+						<p class="fragment highlight-green">$\mathbf{X}(s) = (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{x}(0) + (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}\mathbf{U}(s)$</p>
+						<p class="fragment">Donde $(s\mathbf{I} - \mathbf{A})$ es la <strong>Matriz Característica</strong> del sistema.</p>
+					</section>
+					<section>
+						<h4>La Matriz de Transición de Estado $\Phi(t)$</h4>
+						<p>La solución en el dominio del tiempo tiene dos partes:</p>
+						<ul>
+							<li class="fragment">Respuesta a las condiciones iniciales (entrada cero).</li>
+							<li class="fragment">Respuesta a la entrada (condiciones iniciales cero).</li>
+						</ul>
+						<p class="fragment">$\mathbf{x}(t) = \mathcal{L}^{-1}\{(s\mathbf{I} - \mathbf{A})^{-1}\}\mathbf{x}(0) + \mathcal{L}^{-1}\{(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}\mathbf{U}(s)\}$</p>
+						<p class="fragment">Definimos la <strong>Matriz de Transición de Estado</strong> como:</p>
+						<p class="fragment highlight-green">$\Phi(t) = \mathcal{L}^{-1}\{(s\mathbf{I} - \mathbf{A})^{-1}\} = e^{\mathbf{A}t}$</p>
+						<p class="fragment">Esta matriz "hace la transición" del estado desde $t=0$ hasta un tiempo $t$.</p>
+					</section>
+					<section>
+						<h4>Solución Final en el Tiempo</h4>
+						<p>La solución completa es:</p>
+						<p>$\mathbf{x}(t) = \Phi(t)\mathbf{x}(0) + \int_{0}^{t} \Phi(t-\tau)\mathbf{B}\mathbf{u}(\tau)d\tau$</p>
+						<p>Esta es la <strong>integral de convolución</strong>. Nos dice que el estado en cualquier momento es la suma de la evolución natural del sistema (respuesta libre) y la respuesta forzada por la entrada.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Interconexión de Sistemas</h3>
+						<p>Los sistemas complejos se construyen a partir de subsistemas más simples. Analizaremos cómo modelar estas conexiones.</p>
+					</section>
+					<section>
+						<h4>Conexión en Serie (Cascada)</h4>
+						<p>La salida de un sistema es la entrada del siguiente: $u_2(t) = y_1(t)$</p>
+						<!-- Imagen faltante: Diagrama de bloques de dos sistemas (S1 y S2) conectados en serie o cascada. La salida de S1, y1(t), es la entrada de S2, u2(t). -->
+						<div style="border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 20px auto; font-family: monospace; width: 90%;">
+							<p><strong>Diagrama: Conexión en Serie</strong></p>
+							<p>u1(t) &rarr; [ S1 ] &rarr; y1(t)=u2(t) &rarr; [ S2 ] &rarr; y2(t)</p>
+						</div>
+						<p class="fragment">La función de transferencia equivalente es el producto:</p>
+						<p class="fragment">$H(s) = H_1(s)H_2(s)$</p>
+						<p class="fragment">El modelo de estado se construye con un <strong>vector de estado aumentado</strong>: $\mathbf{x} = \begin{bmatrix} \mathbf{x}_1 \\ \mathbf{x}_2 \end{bmatrix}$</p>
+					</section>
+					<section>
+						<h4>Conexión Retroalimentada (Lazo Cerrado)</h4>
+						<p>La salida se "realimenta" y se compara con una referencia.</p>
+						<!-- Imagen faltante: Diagrama de bloques de un sistema con retroalimentación negativa. La entrada r(t) se compara con la salida de S2, y2(t). El error resultante, u1(t), es la entrada de S1. La salida de S1, y1(t), es la entrada de S2. -->
+						<div style="border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 20px auto; font-family: monospace; width: 90%;">
+							<p><strong>Diagrama: Conexión Retroalimentada</strong></p>
+							<p>r(t) &rarr; (&Sigma;) &rarr; [ S1 ] &rarr; y(t)</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&uarr;--- [ S2 ] &larr;┘</p>
+						</div>
+						<p class="fragment">La función de transferencia equivalente es:</p>
+						<p class="fragment">$H(s) = \frac{H_1(s)}{1 + H_1(s)H_2(s)}$</p>
+					</section>
+				</section>
+
+				<section data-background-color="var(--palenight-contrast)">
+					<section>
+						<h3>Pon a Prueba tu Comprensión</h3>
+						<p>Pregunta 1:</p>
+						<p class="fragment" style="text-align: left; margin-top: 40px;">Si un sistema mecánico tiene 3 masas y 2 resortes, ¿cuál es el orden mínimo del sistema y por qué?</p>
+					</section>
+					<section>
+						<h3>Respuesta 1</h3>
+						<p style="text-align: left; margin-top: 40px;">El orden del sistema es <strong>5</strong>.</p>
+						<p class="fragment" style="text-align: left;"><strong>Razón:</strong> El orden del sistema es igual al número de elementos almacenadores de energía independientes. Cada masa almacena energía cinética (requiere una variable de estado: velocidad) y cada resorte almacena energía potencial (requiere una variable de estado: posición/elongación). Por lo tanto, necesitamos 3 variables para las velocidades de las masas y 2 para las posiciones de los resortes, sumando un total de 5 variables de estado.</p>
+					</section>
+					<section>
+						<h3>Pon a Prueba tu Comprensión</h3>
+						<p>Pregunta 2:</p>
+						<p class="fragment" style="text-align: left; margin-top: 40px;">En la ecuación $\dot{x} = Ax + Bu$, ¿qué representa físicamente la matriz A y qué representa la matriz B?</p>
+					</section>
+					<section>
+						<h3>Respuesta 2</h3>
+						<ul>
+							<li class="fragment">La <strong>Matriz A (Matriz de Estado)</strong> representa la <strong>dinámica interna</strong> del sistema. Describe cómo las variables de estado interactúan entre sí sin ninguna influencia externa. Sus valores dependen de los parámetros físicos del sistema (R, L, C, k, m, B, etc.).</li>
+							<li class="fragment">La <strong>Matriz B (Matriz de Entrada)</strong> representa cómo la <strong>entrada externa $u(t)$ afecta</strong> a cada una de las variables de estado. Actúa como un "distribuidor" de la energía o fuerza de entrada al sistema.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h3>Resumen de la Unidad 1</h3>
+					<ul>
+						<li class="fragment">Los <strong>modelos</strong> y la <strong>simulación</strong> son herramientas clave para analizar sistemas de forma segura y económica.</li>
+						<li class="fragment">La representación por <strong>variables de estado</strong> es el método moderno y más versátil.</li>
+						<li class="fragment">Las <strong>ecuaciones de estado</strong> ($\dot{x}=Ax+Bu, y=Cx+Du$) describen matemáticamente cualquier sistema lineal.</li>
+						<li class="fragment">Podemos obtener el modelo de estado a partir de las leyes físicas del sistema (Newton, Kirchhoff).</li>
+						<li class="fragment">La solución se encuentra usando la <strong>Transformada de Laplace</strong> y la <strong>Matriz de Transición de Estado</strong> $\Phi(t)$.</li>
+						<li class="fragment">Podemos modelar sistemas complejos interconectando subsistemas.</li>
+					</ul>
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Fin de la Unidad 1</h2>
+					<p>¿Preguntas?</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.04,
+				minScale: 0.2,
+				maxScale: 2.0,
+				hash: true,
+				progress: true,
+				slideNumber: 'c/t',
+				transition: 'convex', // Transición global
+				backgroundTransition: 'fade',
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
+</html>
+						<p>
+						$\begin{Bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{Bmatrix} = 
+						\begin{bmatrix} -\frac{R}{L} & -\frac{1}{L} \\ \frac{1}{C} & 0 \end{bmatrix}
+						\begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix} +
+						\begin{Bmatrix} \frac{1}{L} \\ 0 \end{Bmatrix} v_i(t)$
+						</p>
+						<p>Ecuación de Salida (si $y = v_C$):</p>
+						<p>
+						$y(t) = \begin{bmatrix} 0 & 1 \end{bmatrix} \begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix}$
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Ejemplo 2: Sistema Masa-Resorte-Amortiguador</h3>
+						<!-- Imagen faltante: Diagrama de un sistema masa-resorte-amortiguador. Una masa (m) está conectada a una pared por un resorte (k) y un amortiguador (B). Se le aplica una fuerza u(t) y su desplazamiento es y(t). -->
+						<div style="border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 20px auto; width: 80%;">
+							<p><strong>Diagrama: Sistema Masa-Resorte-Amortiguador</strong></p>
+							<p style="font-size: 0.8em;">(El alumno puede buscar una imagen de referencia)</p>
+						</div>
+					</section>
+					<section>
+						<h4>Paso 1: Identificar Variables de Estado</h4>
+						<p>Los elementos que almacenan energía son la masa (energía cinética) y el resorte (energía potencial).</p>
+						<ul>
+							<li>$x_1(t) = y(t)$ (Posición de la masa)</li>
+							<li>$x_2(t) = \dot{y}(t)$ (Velocidad de la masa)</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Paso 2: Ecuación del Sistema (2da Ley de Newton)</h4>
+						<p>$\sum F = ma \implies u(t) - k y(t) - B \dot{y}(t) = m \ddot{y}(t)$</p>
+						<p>Despejando la aceleración:</p>
+						<p>$\ddot{y}(t) = -\frac{k}{m} y(t) - \frac{B}{m} \dot{y}(t) + \frac{1}{m} u(t)$</p>
+					</section>
+					<section>
+						<h4>Paso 3: Formular Ecuaciones de Estado</h4>
+						<p>A partir de la definición de las variables:</p>
+						<p>$\dot{x}_1 = \dot{y} = x_2$</p>
+						<p>$\dot{x}_2 = \ddot{y} = -\frac{k}{m} x_1 - \frac{B}{m} x_2 + \frac{1}{m} u(t)$</p>
+					</section>
+					<section>
+						<h4>Paso 4: Representación Matricial</h4>
+						<p>Ecuación de Estado:</p>
+						<p>
+						$\begin{Bmatrix} \dot{x}_1 \\ \dot{x}_2 \end{Bmatrix} =
+						\begin{bmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{B}{m} \end{bmatrix}
+						\begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix} +
+						\begin{Bmatrix} 0 \\ \frac{1}{m} \end{Bmatrix} u(t)$
+						</p>
+						<p>Ecuación de Salida (si $y$ es la posición):</p>
+						<p>
+						$y(t) = \begin{bmatrix} 1 & 0 \end{bmatrix} \begin{Bmatrix} x_1 \\ x_2 \end{Bmatrix}$
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Resolución del Modelo de Estado</h3>
+						<p>Resolver la ecuación de estado significa encontrar el vector $\mathbf{x}(t)$. Usaremos la <strong>Transformada de Laplace</strong>.</p>
+						<p>$\dot{\mathbf{x}}(t) = \mathbf{A} \mathbf{x}(t) + \mathbf{B} \mathbf{u}(t)$</p>
+						<p class="fragment">Aplicando Laplace:</p>
+						<p class="fragment">$s\mathbf{X}(s) - \mathbf{x}(0) = \mathbf{A}\mathbf{X}(s) + \mathbf{B}\mathbf{U}(s)$</p>
+					</section>
+					<section>
+						<h4>Despejando X(s)</h4>
+						<p>$s\mathbf{X}(s) - \mathbf{A}\mathbf{X}(s) = \mathbf{x}(0) + \mathbf{B}\mathbf{U}(s)$</p>
+						<p>$(s\mathbf{I} - \mathbf{A})\mathbf{X}(s) = \mathbf{x}(0) + \mathbf{B}\mathbf{U}(s)$</p>
+						<p class="fragment">La solución en el dominio de Laplace es:</p>
+						<p class="fragment">$\mathbf{X}(s) = (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{x}(0) + (s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}\mathbf{U}(s)$</p>
+						<p class="fragment">Donde $(s\mathbf{I} - \mathbf{A})$ es la <strong>Matriz Característica</strong> del sistema.</p>
+					</section>
+					<section>
+						<h4>La Matriz de Transición de Estado $\Phi(t)$</h4>
+						<p>La solución en el dominio del tiempo tiene dos partes:</p>
+						<ul>
+							<li class="fragment">Respuesta a las condiciones iniciales (entrada cero).</li>
+							<li class="fragment">Respuesta a la entrada (condiciones iniciales cero).</li>
+						</ul>
+						<p class="fragment">$\mathbf{x}(t) = \mathcal{L}^{-1}\{(s\mathbf{I} - \mathbf{A})^{-1}\}\mathbf{x}(0) + \mathcal{L}^{-1}\{(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B}\mathbf{U}(s)\}$</p>
+						<p class="fragment">Definimos la <strong>Matriz de Transición de Estado</strong> como:</p>
+						<p class="fragment">$\Phi(t) = \mathcal{L}^{-1}\{(s\mathbf{I} - \mathbf{A})^{-1}\} = e^{\mathbf{A}t}$</p>
+						<p class="fragment">Esta matriz "hace la transición" del estado desde $t=0$ hasta un tiempo $t$.</p>
+					</section>
+					<section>
+						<h4>Solución Final en el Tiempo</h4>
+						<p>La solución completa es:</p>
+						<p>$\mathbf{x}(t) = \Phi(t)\mathbf{x}(0) + \int_{0}^{t} \Phi(t-\tau)\mathbf{B}\mathbf{u}(\tau)d\tau$</p>
+						<p>Esta es la <strong>integral de convolución</strong>. Nos dice que el estado en cualquier momento es la suma de la evolución natural del sistema (respuesta libre) y la respuesta forzada por la entrada.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Interconexión de Sistemas</h3>
+						<p>Los sistemas complejos se construyen a partir de subsistemas más simples. Analizaremos cómo modelar estas conexiones.</p>
+					</section>
+					<section>
+						<h4>Conexión en Serie (Cascada)</h4>
+						<p>La salida de un sistema es la entrada del siguiente: $u_2(t) = y_1(t)$</p>
+						<!-- Imagen faltante: Diagrama de bloques de dos sistemas (S1 y S2) conectados en serie o cascada. La salida de S1, y1(t), es la entrada de S2, u2(t). -->
+						<div style="border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 20px auto; font-family: monospace; width: 90%;">
+							<p><strong>Diagrama: Conexión en Serie</strong></p>
+							<p>u1(t) &rarr; [ S1 ] &rarr; y1(t)=u2(t) &rarr; [ S2 ] &rarr; y2(t)</p>
+						</div>
+						<p class="fragment">La función de transferencia equivalente es el producto:</p>
+						<p class="fragment">$H(s) = H_1(s)H_2(s)$</p>
+						<p class="fragment">El modelo de estado se construye con un <strong>vector de estado aumentado</strong>: $\mathbf{x} = \begin{bmatrix} \mathbf{x}_1 \\ \mathbf{x}_2 \end{bmatrix}$</p>
+					</section>
+					<section>
+						<h4>Conexión Retroalimentada (Lazo Cerrado)</h4>
+						<p>La salida se "realimenta" y se compara con una referencia.</p>
+						<!-- Imagen faltante: Diagrama de bloques de un sistema con retroalimentación negativa. La entrada r(t) se compara con la salida de S2, y2(t). El error resultante, u1(t), es la entrada de S1. La salida de S1, y1(t), es la entrada de S2. -->
+						<div style="border: 1px dashed #ccc; padding: 20px; text-align: center; margin: 20px auto; font-family: monospace; width: 90%;">
+							<p><strong>Diagrama: Conexión Retroalimentada</strong></p>
+							<p>r(t) &rarr; (&Sigma;) &rarr; [ S1 ] &rarr; y(t)</p>
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&uarr;--- [ S2 ] &larr;┘</p>
+						</div>
+						<p class="fragment">La función de transferencia equivalente es:</p>
+						<p class="fragment">$H(s) = \frac{H_1(s)}{1 + H_1(s)H_2(s)}$</p>
+					</section>
+				</section>
+
+				<section>
+					<h3>Resumen de la Unidad 1</h3>
+					<ul>
+						<li>Los <strong>modelos</strong> y la <strong>simulación</strong> son herramientas clave para analizar sistemas de forma segura y económica.</li>
+						<li>La representación por <strong>variables de estado</strong> es el método moderno y más versátil.</li>
+						<li>Las <strong>ecuaciones de estado</strong> ($\dot{x}=Ax+Bu, y=Cx+Du$) describen matemáticamente cualquier sistema lineal.</li>
+						<li>Podemos obtener el modelo de estado a partir de las leyes físicas del sistema (Newton, Kirchhoff).</li>
+						<li>La solución se encuentra usando la <strong>Transformada de Laplace</strong> y la <strong>Matriz de Transición de Estado</strong> $\Phi(t)$.</li>
+						<li>Podemos modelar sistemas complejos interconectando subsistemas.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Fin de la Unidad 1</h2>
+					<p>¿Preguntas?</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/math/math.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+		<script>
+			Reveal.initialize({
+				width: 960,
+				height: 700,
+				margin: 0.04,
+				minScale: 0.2,
+				maxScale: 2.0,
+				hash: true,
+				progress: true,
+				slideNumber: 'c/t',
+				transition: 'convex', // Transición global
+				backgroundTransition: 'fade',
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
+</html>
